@@ -22,8 +22,3 @@ case $1 in
     exit 1
     ;;
 esac
-
-
-      name: Check Schema
-      ansible.builtin.shell: echo 'show databases' | mysql -h {{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.endpoint', region='us-east-1') }} -u{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.user', region='us-east-1') }} -p{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.password', region='us-east-1') }} | grep cities
-      register: schema_status
